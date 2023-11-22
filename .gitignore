@@ -1,5 +1,7 @@
 .idea
 .build
+.dist
+dist
 build
 node_modules
 yarn.lock
