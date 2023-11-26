@@ -2,33 +2,31 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-const mode = process.env.NODE_ENV || 'development';
-
-devMode = mode === 'development';
-
-const target = devMode ? 'web' : 'browserslist';
-
-const devtool = devMode ? 'source-map' : undefined
+//const devtool = devMode ? 'inline-source-map' : undefined
 
 module.exports = {
-  mode,
-  target,
-  devtool,
+  //для ошибок
+  devtool : 'inline-source-map',
+  mode : 'development',
   devServer: {
+    //contentBase: './dist',
     port: 3030,
-    open: true,
+    open: false,
     hot: true,
   },
-  entry: ['@babel/polyfill', path.resolve(__dirname, 'src', 'index.tsx')],
-  output: {
+  entry: './src/index.tsx',
+  output : {
+    //название бандла
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
-    filename: '[name].[contenthash].js',
-    assetModuleFilename: 'assets/[hash][ext]'
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js']
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html')
+      template: path.join(__dirname, 'src', 'index.html')
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
@@ -37,51 +35,37 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.html$/i,
-        loader: 'html-loader',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
       },
       {
-        test: /\.(c|sa|sc)css$/i,
-        use: [
-          devMode ? "style-loader" : MiniCssExtractPlugin.loader, 
-          "css-loader",
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [require('postcss-preset-env')],
-              }
-            }
-          },
-          'sass-loader'
-        ],
-      },
-      // {
-      //   test: /\.woff2?$/i,
-      //   type: 'asset/resource',
-      //   generator: {
-      //     filename: 'fonts/[name].[ext]'
-      //   }
-      // },
-      {
-        test: /\.(jpe?g|png|webp|gif|svg)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: 'img/[name].[ext]'
-        }
-      },
-      {
-        test: /\.(?:js|mjs|cjs)$/,
+        test: /\.tsx$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
-              ['@babel/preset-env', { targets: "defaults" }]
+              '@babel/preset-react', '@babel/preset-typescript'
             ]
           }
         }
       },
+      //CSS
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
+      // Loading pictures
+      {
+        test: /\.(jpe?g|png|webp|gif|svg)$/i,
+        type: 'asset/resource',
+      },
+      // Loading fonts
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+      }
     ]
   }
 }

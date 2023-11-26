@@ -4,16 +4,17 @@ import ReactDOM from 'react-dom';
 // import { Provider } from 'react-redux';
 // import { rootReducer } from '../app/rootReducer';
 
-//import Application from '../src/app';
+import Application from '../src/app';
 
 const root = document.getElementById('root');
 
 if (root) {
   {
     ReactDOM.render((
-      <>
-        Application
-      </>
+      <Application />
+      // <>
+      //   Application
+      // </>
       // <Application />
       //Предоставляет доступ к Redux Store
       // <Provider store={ rootReducer }>
