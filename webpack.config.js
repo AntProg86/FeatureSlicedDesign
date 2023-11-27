@@ -12,7 +12,7 @@ module.exports = {
     //contentBase: './dist',
     port: 3030,
     open: false,
-    hot: true,
+    hot: true, // Включает автоматическую перезагрузку страницы при изменениях
   },
   entry: './src/index.tsx',
   output : {
