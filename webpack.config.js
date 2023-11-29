@@ -53,7 +53,7 @@ module.exports = {
       },
       //CSS
       {
-        test: /\.css$/i,
+        test: /\.(css|scss)$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       // Loading pictures
