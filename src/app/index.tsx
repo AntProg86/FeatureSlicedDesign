@@ -37,10 +37,6 @@ const Application: React.FunctionComponent<Props> = () => {
           </ul>
         </nav>
         <hr />
-        <div className='QWERTY'>
-          AJSHDLKAJS
-        </div>
-        <h1>asdsd</h1>
         <Routes>
           <Route path={ "/" } element={ <>main page</> } />
           <Route path={ "/about" } element={ <>AboutPage</> } />
