@@ -1,8 +1,10 @@
 import React, { useEffect, useContext, useState} from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import LocalizedStrings from '#src/components/language/localization';
-import './styles.scss';
+//import './styles.css';
 import { Link, Route, Routes } from 'react-router-dom';
+//import '../../src/re'
+import './reset.scss';
 
 type Props = {
 
@@ -35,6 +37,10 @@ const Application: React.FunctionComponent<Props> = () => {
           </ul>
         </nav>
         <hr />
+        <div className='QWERTY'>
+          AJSHDLKAJS
+        </div>
+        <h1>asdsd</h1>
         <Routes>
           <Route path={ "/" } element={ <>main page</> } />
           <Route path={ "/about" } element={ <>AboutPage</> } />
