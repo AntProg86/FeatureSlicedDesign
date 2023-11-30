@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState} from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-// import LocalizedStrings from '#src/components/language/localization';
 //import './styles.css';
+import LocalizedStrings from './localization';
 import { Link, Route, Routes } from 'react-router-dom';
 //import '../../src/re'
 import './reset.scss';
@@ -23,12 +23,12 @@ const Application: React.FunctionComponent<Props> = () => {
 
               <li>
                 {/* <Link to="/">{LocalizedStrings._home}</Link> */}
-                <Link to="/">home</Link>
+                <Link to="/">{LocalizedStrings._home}</Link>
               </li>
               &nbsp;||&nbsp;
               <li>
                 {/* <Link to="/about">{LocalizedStrings._about}</Link> */}
-                <Link to="/about">about</Link>
+                <Link to="/about">{LocalizedStrings._about}</Link>
               </li>
               &nbsp;||&nbsp;
               <li>
