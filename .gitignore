@@ -1,6 +1,8 @@
 .idea
 .build
 .dist
+.vs
+vs
 dist
 build
 node_modules
